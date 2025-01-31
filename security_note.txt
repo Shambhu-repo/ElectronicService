@@ -1,0 +1,15 @@
+--creating file upload service---
+this service will help user or adming to upload the image to the server
+
+-----what is jpa derived query method in springboot ------
+read this page
+https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+
+
+---Application.properties---
+We can find all the tag or default properties in "common spring properties" browsing in the google
+
+
+
+-----Security note ----
+1. lets use the serviceDetail interface with user entity

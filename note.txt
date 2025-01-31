@@ -1,0 +1,87 @@
+courses : https://courses.learncodewithdurgesh.com/learn
+username:shuravigautam@gmail.com
+password:learningIs_best
+
+DTO -- > data transfer object is a class or object that will take the data from controller to service and service
+to controller .
+Entity class : this is responsible to accept the data from service to persistence layer and persistence layer ot
+Service .
+
+
+
+Important
+----------
+1. Api Validation  2. exception handling  3. pagination and sorting
+
+how we do api validation ?
+whatedver the data comin from the client request need to be validated before they go to database .
+---> Hibernate Bean validator
+we can use it in DTO bean/ class properties ( this class is responsible to bind the data from controller and bring to
+service for processing whatever the data comes as request will be justified with given Hibernate bean validator
+---------------------
+
+1st steps : add the dependency  starter-validation
+2nd steps: use the annotation to perform bean property validation / @NotNull , @Email. @Max, @Min , @Pattern
+3rd step: if we wnat more logic or other rules then we can also create the custom validator
+4th step : Enable the validation @valid annotaion where bean is getting data ( mainly in controller)
+
+-------
+@pattern  expression very important
+
+custom bean validator
+---------------------
+case : if we can not use given in-built validation annotaion , we can use our own validation bean and we should create it , how
+to do it...
+-----> in this project i have used ImageNameValidate and ImageNameValidator two classes under Validate package please check it
+
+------Exception handler-----
+Global excepiton handling
+@RestControllerAdvice
+package used for the global exception handling
+exception: package
+class: Globla exceptionHandler and ResourceNoFoundException
+and response message is set into ApiResponse class
+
+------how to handle the methodargumenthandle exception with single exception controller
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+
+can check in the exception package that handdles globally
+
+
+--------------Pagination------
+Pagination will get from jparepository interface because
+ it extends ListCrudRepository and ListPagingAndSortingRepositor and QueryByExampleExecutor
+
+  further
+  ListPagingAndSortingRepository<T, ID> extends PagingAndSortingRepository<T, ID>
+
+  PagingAndSortingRepository has the method
+   Page<T> findAll(Pageable pageable);
+   which takes argument of pageable object
+
+
+   Page interface extends slice interface and slice interface extends streamable( slice interface has method getContent()
+
+
+   ----Sorting-----
+   here we can sort the page content as per our logic , that means what will be the sorting oreder of the content comming
+   into page ( or page size sorting)
+
+   There is "Sort"  class with   "Static Method of(int pageNumber, Pagesie, Sort sort)""
+   Sort implements Streamable<org.springframework.data.domain.Sort.Order>, Serializable
+
+
+   ----how to make customize pagin and sorting resposne like how many page size is there and which page total number of page and which one
+   is last of the page content etc----------------
+   I am goint to make it as general purpose so can use to every other funcitonality tooo
+   ----> here i will make the class under dtos package for it
+   public class PageableResponse()
+{  }
+
+
+
+
+
+
+
+
